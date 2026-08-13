@@ -12,141 +12,242 @@
 
 html, body {
     margin: 0;
-    padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
-    background: #101820;
-    color: white;
+    background: #0d151c;
+    color: #fff;
 }
 
 .dashboard {
     width: 100vw;
     height: 100vh;
-    display: grid;
-    grid-template-columns: 35% 65%;
-    grid-template-rows: 32% 68%;
-    gap: 10px;
     padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 25% 37.5% 37.5%;
+    gap: 10px;
 }
 
 .card {
-    background: #1b2730;
+    background: #17232c;
     border-radius: 18px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    padding: 18px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.35);
+    overflow: hidden;
 }
 
-.clock-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.time {
-    font-size: clamp(55px, 8vw, 120px);
+.title {
+    font-size: 22px;
     font-weight: bold;
-    line-height: 1;
+    margin-bottom: 12px;
 }
 
-.date {
-    font-size: clamp(20px, 2.5vw, 34px);
-    margin-top: 12px;
-    color: #cfd8dc;
-}
-
-.weather-card {
+.clock {
+    grid-column: span 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.weather-left h2 {
-    margin: 0 0 10px 0;
-    font-size: 34px;
+.bigtime {
+    font-size: clamp(55px, 7vw, 105px);
+    font-weight: bold;
+    line-height: 1;
 }
 
-.temperature {
-    font-size: 70px;
-    font-weight: bold;
+.bigdate {
+    font-size: clamp(18px, 2vw, 30px);
+    color: #b8c5cc;
+    margin-top: 10px;
+}
+
+.weather {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-now {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .weather-icon {
-    font-size: 90px;
+    font-size: 65px;
 }
 
-.calendar-card {
-    grid-column: 1;
-    grid-row: 2;
+.temperature {
+    font-size: 52px;
+    font-weight: bold;
 }
 
-.calendar-card h2,
-.notes-card h2 {
-    margin-top: 0;
-    font-size: 30px;
+.condition {
+    color: #b8c5cc;
 }
 
-.calendar-item {
-    padding: 14px;
-    margin: 10px 0;
-    background: #263640;
-    border-radius: 12px;
+.hourly {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
 }
 
-.calendar-time {
-    font-size: 18px;
-    color: #90caf9;
-}
-
-.calendar-title {
-    font-size: 22px;
-    margin-top: 4px;
-}
-
-.notes-card {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-textarea {
-    width: 100%;
-    height: calc(100% - 60px);
-    resize: none;
-    border: none;
-    outline: none;
-    border-radius: 12px;
-    padding: 20px;
-    font-size: 24px;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #263640;
-    color: white;
-}
-
-.footer {
-    position: fixed;
-    bottom: 5px;
-    left: 0;
-    right: 0;
+.hour {
+    flex: 1;
+    background: #22323d;
+    border-radius: 10px;
+    padding: 8px 4px;
     text-align: center;
-    font-size: 13px;
-    color: #78909c;
+    font-size: 14px;
 }
 
-@media (orientation: portrait) {
+.hour-temp {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.calendar {
+    grid-column: 1;
+}
+
+.planes {
+    grid-column: 2;
+}
+
+.news {
+    grid-column: 3;
+}
+
+.traffic {
+    grid-column: 1 / span 2;
+}
+
+.amazon {
+    grid-column: 3;
+}
+
+.scroll {
+    height: calc(100% - 38px);
+    overflow: hidden;
+}
+
+.event,
+.news-item,
+.traffic-item,
+.plane {
+    background: #22323d;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.event-time {
+    color: #80cbc4;
+    font-weight: bold;
+}
+
+.event-title {
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+.news-item {
+    cursor: pointer;
+}
+
+.news-source {
+    color: #80cbc4;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.news-headline {
+    font-size: 17px;
+}
+
+.plane {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.plane-name {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.plane-info {
+    color: #b8c5cc;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.traffic-item {
+    font-size: 16px;
+}
+
+.traffic-road {
+    color: #ffcc80;
+    font-weight: bold;
+}
+
+.amazon-box {
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.amazon-icon {
+    font-size: 65px;
+}
+
+.amazon-button {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 14px 25px;
+    border-radius: 12px;
+    background: #ff9900;
+    color: #111;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.small {
+    color: #8fa1ab;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.loading {
+    color: #8fa1ab;
+}
+
+.error {
+    color: #ff8a80;
+}
+
+@media (max-width: 900px) {
     .dashboard {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
         overflow-y: auto;
         height: auto;
         min-height: 100vh;
     }
 
-    .calendar-card,
-    .notes-card {
-        grid-column: 1;
-        grid-row: auto;
+    .clock,
+    .weather,
+    .calendar,
+    .planes,
+    .news,
+    .traffic,
+    .amazon {
+        grid-column: auto;
     }
 
     body {
@@ -161,185 +262,624 @@ textarea {
 <div class="dashboard">
 
     <!-- CLOCK -->
-    <div class="card clock-card">
-        <div class="time" id="time">00:00</div>
-        <div class="date" id="date">Loading...</div>
-    </div>
+    <section class="card clock">
+        <div>
+            <div class="bigtime" id="time">--:--</div>
+            <div class="bigdate" id="date">Loading...</div>
+        </div>
+        <div style="font-size:55px;">🏠</div>
+    </section>
 
     <!-- WEATHER -->
-    <div class="card weather-card">
-        <div class="weather-left">
-            <h2>Blackpool</h2>
-            <div class="temperature" id="temperature">--°</div>
-            <div id="weatherText">Weather loading...</div>
+    <section class="card weather">
+        <div class="title">🌤️ WEATHER — BLACKPOOL</div>
+
+        <div class="weather-now">
+            <div class="weather-icon" id="weatherIcon">🌤️</div>
+            <div>
+                <div class="temperature" id="temperature">--°</div>
+                <div class="condition" id="condition">Loading...</div>
+            </div>
         </div>
 
-        <div class="weather-icon" id="weatherIcon">🌤️</div>
-    </div>
+        <div class="hourly" id="hourlyWeather">
+            <div class="loading">Loading forecast...</div>
+        </div>
+    </section>
 
     <!-- CALENDAR -->
-    <div class="card calendar-card">
-        <h2>📅 Today's Calendar</h2>
+    <section class="card calendar">
+        <div class="title">📅 TODAY</div>
+        <div class="scroll" id="calendarEvents">
+            <div class="loading">Loading calendar...</div>
+        </div>
+    </section>
 
-        <div class="calendar-item">
-            <div class="calendar-time">09:00</div>
-            <div class="calendar-title">No events loaded</div>
+    <!-- PLANES -->
+    <section class="card planes">
+        <div class="title">✈️ PLANES OVERHEAD</div>
+        <div class="small" id="planeCount">Checking airspace...</div>
+
+        <div class="scroll" id="planesList">
+            <div class="loading">Loading aircraft...</div>
+        </div>
+    </section>
+
+    <!-- NEWS -->
+    <section class="card news">
+        <div class="title">📰 LOCAL NEWS</div>
+
+        <div class="scroll" id="newsList">
+            <div class="loading">Loading headlines...</div>
+        </div>
+    </section>
+
+    <!-- TRAFFIC -->
+    <section class="card traffic">
+        <div class="title">🚗 LOCAL TRAFFIC</div>
+
+        <div class="scroll" id="trafficList">
+            <div class="loading">Checking traffic...</div>
         </div>
 
-        <div class="calendar-item">
-            <div class="calendar-time">12:00</div>
-            <div class="calendar-title">Google Calendar will go here</div>
+        <div class="small">
+            Blackpool / Fylde / Preston
         </div>
+    </section>
 
-        <div class="calendar-item">
-            <div class="calendar-time">18:00</div>
-            <div class="calendar-title">Your appointments and events</div>
+    <!-- AMAZON -->
+    <section class="card amazon">
+        <div class="title">🛒 AMAZON LISTS</div>
+
+        <div class="amazon-box">
+            <div class="amazon-icon">🛒</div>
+
+            <div style="font-size:20px;margin-top:10px;">
+                Shopping Lists
+            </div>
+
+            <a
+                class="amazon-button"
+                href="https://www.amazon.co.uk/hz/wishlist/ls"
+                target="_blank">
+                OPEN LISTS
+            </a>
+
+            <div class="small">
+                We can connect a specific shared list later.
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- NOTES -->
-    <div class="card notes-card">
-        <h2>📝 Notes</h2>
-
-        <textarea id="notes"
-        placeholder="Type your notes here..."></textarea>
-    </div>
-
-</div>
-
-<div class="footer">
-    Home Dashboard
 </div>
 
 <script>
 
-/* =========================
-   CLOCK & DATE
-   ========================= */
+/* =========================================================
+   CLOCK
+========================================================= */
 
 function updateClock() {
 
     const now = new Date();
 
-    const time = now.toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
+    document.getElementById("time").textContent =
+        now.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
 
-    const date = now.toLocaleDateString('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-    });
-
-    document.getElementById("time").textContent = time;
-    document.getElementById("date").textContent = date;
+    document.getElementById("date").textContent =
+        now.toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
 
-/* =========================
-   NOTES
-   ========================= */
-
-const notes = document.getElementById("notes");
-
-notes.value = localStorage.getItem("dashboardNotes") || "";
-
-notes.addEventListener("input", function() {
-    localStorage.setItem("dashboardNotes", notes.value);
-});
-
-
-/* =========================
+/* =========================================================
    WEATHER
-   ========================= */
+   Blackpool coordinates
+========================================================= */
 
-async function getWeather() {
+const LAT = 53.8175;
+const LON = -3.0357;
+
+function weatherDescription(code) {
+
+    if (code === 0) return ["Clear sky", "☀️"];
+    if (code <= 3) return ["Partly cloudy", "🌤️"];
+    if (code <= 48) return ["Fog", "🌫️"];
+    if (code <= 57) return ["Drizzle", "🌦️"];
+    if (code <= 67) return ["Rain", "🌧️"];
+    if (code <= 77) return ["Snow", "❄️"];
+    if (code <= 82) return ["Rain showers", "🌦️"];
+    return ["Thunderstorm", "⛈️"];
+}
+
+async function loadWeather() {
 
     try {
 
-        /*
-        Blackpool approximate coordinates.
-        Weather is obtained from Open-Meteo.
-        No account or API key required.
-        */
-
-        const latitude = 53.8175;
-        const longitude = -3.0357;
-
         const url =
             "https://api.open-meteo.com/v1/forecast" +
-            "?latitude=" + latitude +
-            "&longitude=" + longitude +
+            "?latitude=" + LAT +
+            "&longitude=" + LON +
             "&current=temperature_2m,weather_code" +
+            "&hourly=temperature_2m,weather_code,precipitation_probability" +
+            "&forecast_days=1" +
             "&timezone=Europe%2FLondon";
 
         const response = await fetch(url);
         const data = await response.json();
 
-        const temperature =
+        const currentTemp =
             Math.round(data.current.temperature_2m);
 
-        const code =
+        const currentCode =
             data.current.weather_code;
 
-        document.getElementById("temperature")
-            .textContent = temperature + "°C";
+        const description =
+            weatherDescription(currentCode);
 
-        let text = "Weather";
-        let icon = "🌤️";
+        document.getElementById("temperature").textContent =
+            currentTemp + "°C";
 
-        if (code === 0) {
-            text = "Clear sky";
-            icon = "☀️";
-        }
-        else if (code <= 3) {
-            text = "Partly cloudy";
-            icon = "🌤️";
-        }
-        else if (code <= 48) {
-            text = "Fog";
-            icon = "🌫️";
-        }
-        else if (code <= 67) {
-            text = "Rain";
-            icon = "🌧️";
-        }
-        else if (code <= 77) {
-            text = "Snow";
-            icon = "❄️";
-        }
-        else if (code <= 82) {
-            text = "Rain showers";
-            icon = "🌦️";
-        }
-        else {
-            text = "Stormy";
-            icon = "⛈️";
+        document.getElementById("condition").textContent =
+            description[0];
+
+        document.getElementById("weatherIcon").textContent =
+            description[1];
+
+        const now = new Date();
+        const currentHour = now.getHours();
+
+        let html = "";
+
+        for (let i = currentHour; i < Math.min(currentHour + 6, 24); i++) {
+
+            const code = data.hourly.weather_code[i];
+            const desc = weatherDescription(code);
+
+            html += `
+                <div class="hour">
+                    <div>${String(i).padStart(2,"0")}:00</div>
+                    <div style="font-size:24px">${desc[1]}</div>
+                    <div class="hour-temp">
+                        ${Math.round(data.hourly.temperature_2m[i])}°
+                    </div>
+                    <div>
+                        ${data.hourly.precipitation_probability[i]}% 💧
+                    </div>
+                </div>
+            `;
         }
 
-        document.getElementById("weatherText")
-            .textContent = text;
-
-        document.getElementById("weatherIcon")
-            .textContent = icon;
+        document.getElementById("hourlyWeather").innerHTML = html;
 
     } catch (error) {
 
-        document.getElementById("weatherText")
-            .textContent = "Weather unavailable";
-
+        document.getElementById("condition").textContent =
+            "Weather unavailable";
     }
 }
 
-getWeather();
+loadWeather();
+setInterval(loadWeather, 15 * 60 * 1000);
 
-setInterval(getWeather, 15 * 60 * 1000);
+
+/* =========================================================
+   GOOGLE CALENDAR
+========================================================= */
+
+const CALENDAR_URL =
+"https://calendar.google.com/calendar/ical/moore103calendar%40gmail.com/public/basic.ics";
+
+async function loadCalendar() {
+
+    const box = document.getElementById("calendarEvents");
+
+    try {
+
+        const proxy =
+            "https://api.allorigins.win/raw?url=" +
+            encodeURIComponent(CALENDAR_URL);
+
+        const response = await fetch(proxy);
+
+        if (!response.ok)
+            throw new Error("Calendar unavailable");
+
+        const text = await response.text();
+
+        const events = parseICS(text);
+
+        const today = new Date();
+
+        const todayEvents = events
+            .filter(event => sameDay(event.start, today))
+            .sort((a,b) => a.start - b.start);
+
+        if (!todayEvents.length) {
+
+            box.innerHTML =
+                '<div class="event">No events today</div>';
+
+            return;
+        }
+
+        box.innerHTML = todayEvents.map(event => {
+
+            const time =
+                event.allDay
+                ? "ALL DAY"
+                : event.start.toLocaleTimeString("en-GB", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
+
+            return `
+                <div class="event">
+                    <div class="event-time">${time}</div>
+                    <div class="event-title">
+                        ${escapeHTML(event.title)}
+                    </div>
+                </div>
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        box.innerHTML =
+            '<div class="event error">Calendar could not be loaded</div>';
+    }
+}
+
+function parseICS(text) {
+
+    const unfolded =
+        text.replace(/\r?\n[ \t]/g, "");
+
+    const blocks =
+        unfolded.split("BEGIN:VEVENT").slice(1);
+
+    return blocks.map(block => {
+
+        const titleMatch =
+            block.match(/SUMMARY:(.*)/);
+
+        const dateMatch =
+            block.match(/DTSTART(?:;[^:]*)?:(\d{8}T?\d{0,6}Z?)/);
+
+        if (!dateMatch)
+            return null;
+
+        let dateString = dateMatch[1];
+
+        let allDay =
+            dateString.length === 8;
+
+        let year =
+            parseInt(dateString.substring(0,4));
+
+        let month =
+            parseInt(dateString.substring(4,6)) - 1;
+
+        let day =
+            parseInt(dateString.substring(6,8));
+
+        let hour = 0;
+        let minute = 0;
+
+        if (!allDay && dateString.length >= 13) {
+
+            hour =
+                parseInt(dateString.substring(9,11));
+
+            minute =
+                parseInt(dateString.substring(11,13));
+        }
+
+        return {
+            title: titleMatch
+                ? titleMatch[1].replace(/\\,/g,",")
+                : "Calendar event",
+
+            start: new Date(
+                year,
+                month,
+                day,
+                hour,
+                minute
+            ),
+
+            allDay: allDay
+        };
+
+    }).filter(Boolean);
+}
+
+function sameDay(a,b) {
+
+    return a.getFullYear() === b.getFullYear() &&
+           a.getMonth() === b.getMonth() &&
+           a.getDate() === b.getDate();
+}
+
+
+/* =========================================================
+   PLANES OVERHEAD
+   OpenSky bounding box around Blackpool
+========================================================= */
+
+async function loadPlanes() {
+
+    const box =
+        document.getElementById("planesList");
+
+    try {
+
+        const lamin = 53.55;
+        const lamax = 54.05;
+        const lomin = -3.45;
+        const lomax = -2.65;
+
+        const url =
+            "https://opensky-network.org/api/states/all" +
+            "?lamin=" + lamin +
+            "&lomin=" + lomin +
+            "&lamax=" + lamax +
+            "&lomax=" + lomax;
+
+        const response = await fetch(url);
+
+        if (!response.ok)
+            throw new Error("Aircraft unavailable");
+
+        const data = await response.json();
+
+        const aircraft =
+            (data.states || [])
+            .filter(a => a[5] !== null && a[6] !== null)
+            .sort((a,b) => {
+
+                const altA = a[7] || 0;
+                const altB = b[7] || 0;
+
+                return altB - altA;
+
+            })
+            .slice(0, 10);
+
+        document.getElementById("planeCount")
+            .textContent =
+            aircraft.length +
+            " aircraft detected around Blackpool";
+
+        if (!aircraft.length) {
+
+            box.innerHTML =
+                '<div class="plane">No aircraft detected</div>';
+
+            return;
+        }
+
+        box.innerHTML = aircraft.map(a => {
+
+            const callsign =
+                (a[1] || a[0] || "Unknown").trim();
+
+            const altitude =
+                a[7]
+                ? Math.round(a[7] * 3.28084) + " ft"
+                : "Altitude unknown";
+
+            const speed =
+                a[9]
+                ? Math.round(a[9] * 1.94384) + " kt"
+                : "";
+
+            return `
+                <div class="plane">
+                    <div>
+                        <div class="plane-name">
+                            ✈️ ${escapeHTML(callsign)}
+                        </div>
+                        <div class="plane-info">
+                            ${altitude} ${speed ? " • " + speed : ""}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        document.getElementById("planeCount")
+            .textContent = "Aircraft data unavailable";
+
+        box.innerHTML =
+            '<div class="plane error">Live aircraft feed unavailable</div>';
+    }
+}
+
+loadPlanes();
+setInterval(loadPlanes, 60 * 1000);
+
+
+/* =========================================================
+   LOCAL NEWS
+========================================================= */
+
+async function loadNews() {
+
+    const box =
+        document.getElementById("newsList");
+
+    try {
+
+        const rss =
+            "https://news.google.com/rss/search?q=" +
+            encodeURIComponent(
+                "Blackpool Lancashire when:1d"
+            ) +
+            "&hl=en-GB&gl=GB&ceid=GB:en";
+
+        const proxy =
+            "https://api.allorigins.win/raw?url=" +
+            encodeURIComponent(rss);
+
+        const response =
+            await fetch(proxy);
+
+        const text =
+            await response.text();
+
+        const xml =
+            new DOMParser()
+            .parseFromString(text, "text/xml");
+
+        const items =
+            Array.from(xml.querySelectorAll("item"))
+            .slice(0, 7);
+
+        if (!items.length)
+            throw new Error("No news");
+
+        box.innerHTML = items.map(item => {
+
+            const title =
+                item.querySelector("title")?.textContent ||
+                "Local news";
+
+            const link =
+                item.querySelector("link")?.textContent ||
+                "#";
+
+            return `
+                <div class="news-item"
+                     onclick="window.open('${link}','_blank')">
+
+                    <div class="news-source">
+                        LOCAL NEWS
+                    </div>
+
+                    <div class="news-headline">
+                        ${escapeHTML(title)}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        box.innerHTML =
+            '<div class="news-item error">News feed unavailable</div>';
+    }
+}
+
+loadNews();
+setInterval(loadNews, 10 * 60 * 1000);
+
+
+/* =========================================================
+   LOCAL TRAFFIC
+========================================================= */
+
+async function loadTraffic() {
+
+    const box =
+        document.getElementById("trafficList");
+
+    try {
+
+        const source =
+            "https://www.traffic-update.co.uk/traffic/blackpool.asp";
+
+        const proxy =
+            "https://api.allorigins.win/raw?url=" +
+            encodeURIComponent(source);
+
+        const response =
+            await fetch(proxy);
+
+        const text =
+            await response.text();
+
+        const doc =
+            new DOMParser()
+            .parseFromString(text, "text/html");
+
+        const body =
+            doc.body.innerText || "";
+
+        const lines =
+            body.split("\n")
+            .map(x => x.trim())
+            .filter(x => x.length > 20)
+            .filter(x =>
+                /road|junction|m55|blackpool|traffic|closure|works|congestion/i.test(x)
+            )
+            .slice(0, 6);
+
+        if (!lines.length)
+            throw new Error("No traffic");
+
+        box.innerHTML = lines.map(line => {
+
+            return `
+                <div class="traffic-item">
+                    🚗 ${escapeHTML(line)}
+                </div>
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        box.innerHTML = `
+            <div class="traffic-item">
+                🚗 Traffic information unavailable
+            </div>
+
+            <div class="traffic-item">
+                <a
+                  href="https://www.blackpool.gov.uk/Residents/Parking-roads-and-transport/Roadworks-and-road-maintenance/Road-closures.aspx"
+                  target="_blank"
+                  style="color:#80cbc4;">
+                  View Blackpool road closures
+                </a>
+            </div>
+        `;
+    }
+}
+
+loadTraffic();
+setInterval(loadTraffic, 5 * 60 * 1000);
+
+
+/* =========================================================
+   SAFETY / HTML ESCAPE
+========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 </script>
 
