@@ -1,1 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Info</title>
 
+<style>
+*{box-sizing:border-box}
+
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:Arial,sans-serif;
+background:#0b1117;
+color:white
+}
+
+.dashboard{
+width:100vw;
+height:100vh;
+padding:10px;
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+grid-template-rows:24% 38% 38%;
+gap:10px
+}
+
+.card{
+background:#17232d;
+border-radius:18px;
+padding:18px;
+overflow:hidden;
+box-shadow:0 3px 15px rgba(0,0,0,.35)
+}
+
+.title{
+font-size:22px;
+font-weight:bold;
+margin-bottom:12px
+}
+
+/* CLOCK */
+
+.clock{
+grid-column:span 2;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+
+.time{
+font-size:clamp(60px,8vw,110px);
+font-weight:bold;
+line-height:1
+}
+
+.date{
+font-size:clamp(20px,2.3vw,32px);
+color:#b7c5ce;
+margin-top:10px
+}
+
+/* WEATHER */
+
+.weather{
+display:flex;
+flex-direction:column
+}
+
+.weatherTop{
+display:flex;
+align-items:center;
+gap:15px
+}
+
+.weatherIcon{
+font-size:65px
+}
+
+.temp{
+font-size:48px;
+font-weight:bold
+}
+
+.condition{
+color:#b7c5ce
+}
+
+.hours{
+display:flex;
+gap:6px;
+margin-top:15px
+}
+
+.hour{
+flex:1;
+background:#22323d;
+border-radius:10px;
+padding:7px 3px;
+text-align:center;
+font-size:13px
+}
+
+.hourTemp{
+font-size:20px;
+font-weight:bold;
+margin-top:5px
+}
+
+/* CALENDAR */
+
+.calendar{
+grid-column:1
+}
+
+.calendar iframe{
+width:100%;
+height:calc(100% - 40px);
+border:0;
+border-radius:10px;
+background:white
+}
+
+/* PLANES */
+
+.planes{
+grid-column:2
+}
+
+.planeCount{
+color:#8fa2ad;
+font-size:13px;
+margin-bottom:8px
+}
+
+.list{
+height:calc(100% - 65px);
+overflow:hidden
+}
+
+.plane{
+background:#22323d;
+border-radius:10px;
+padding:9px;
+margin-bottom:7px;
+display:flex;
+justify-content:space-between
+}
+
+.callsign{
+font-size:17px;
+font-weight:bold
+}
+
+.info{
+font-size:13px;
+color:#b7c5ce;
+margin-top:3px
+}
+
+/* NEWS / TRAFFIC */
+
+.news{
+grid-column:3
+}
+
+.traffic{
+grid-column:1 / span 2
+}
+
+.item{
+background:#22323d;
+border-radius:10px;
+padding:11px;
+margin-bottom:8px
+}
+
+.itemTitle{
+font-size:17px;
+font-weight:bold
+}
+
+.itemSmall{
+font-size:13px;
+color:#9eb0ba;
+margin-top:4px
+}
+
+.button{
+display:block;
+background:#2b8cff;
+color:white;
+text-decoration:none;
+padding:13px;
+border-radius:10px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+margin-top:12px
+}
+
+.button.orange{
+background:#ff9900;
+color:#111
+}
+
+.newsButtons{
+margin-top:10px
+}
+
+/* AMAZON */
+
+.amazon{
+grid-column:3
+}
+
+.amazonBox{
+height:calc(100% - 45px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center
+}
+
+.amazonIcon{
+font-size:65px
+}
+
+.amazonText{
+font-size:21px;
+margin-top:8px
+}
+
+.loading{
+color:#8fa2ad
+}
+
+@media(max-width:900px){
+.dashboard{
+grid-template-columns:1fr 1fr;
+grid-template-rows:auto;
+height:auto;
+min-height:100vh;
+overflow:auto
+}
+.clock,.weather,.calendar,.planes,.news,.traffic,.amazon{
+grid-column:auto
+}
+body{overflow:auto}
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- CLOCK -->
+<div class="card clock">
+
+<div>
+<div class="time" id="time">--:--</div>
+<div class="date" id="date">Loading...</div>
+</div>
+
+<div style="font-size:55px">🏠</div>
+
+</div>
+
+
+<!-- WEATHER -->
+<div class="card weather">
+
+<div class="title">🌤️ WEATHER — BLACKPOOL</div>
+
+<div class="weatherTop">
+
+<div class="weatherIcon" id="weatherIcon">🌤️</div>
+
+<div>
+<div class="temp" id="temp">--°</div>
+<div class="condition" id="condition">Loading...</div>
+</div>
+
+</div>
+
+<div class="hours" id="hours">
+<div class="loading">Loading forecast...</div>
+</div>
+
+</div>
+
+
+<!-- CALENDAR -->
+<div class="card calendar">
+
+<div class="title">📅 TODAY</div>
+
+<iframe
+src="https://calendar.google.com/calendar/embed?src=moore103calendar%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA">
+</iframe>
+
+</div>
+
+
+<!-- PLANES -->
+<div class="card planes">
+
+<div class="title">✈️ PLANES OVERHEAD</div>
+
+<div class="planeCount" id="planeCount">
+Checking airspace...
+</div>
+
+<div class="list" id="planes">
+<div class="loading">Loading aircraft...</div>
+</div>
+
+</div>
+
+
+<!-- NEWS -->
+<div class="card news">
+
+<div class="title">📰 LOCAL NEWS</div>
+
+<div class="item">
+<div class="itemTitle">
+Blackpool latest headlines
+</div>
+<div class="itemSmall">
+Latest local stories and breaking news.
+</div>
+</div>
+
+<div class="item">
+<div class="itemTitle">
+Blackpool Council News
+</div>
+<div class="itemSmall">
+Official local council announcements.
+</div>
+</div>
+
+<a
+class="button"
+href="https://www.newsnow.co.uk/h/UK/England/Lancashire/Blackpool"
+target="_blank">
+LATEST BLACKPOOL NEWS
+</a>
+
+<a
+class="button"
+href="https://www.blackpool.gov.uk/News/Newsroom.aspx"
+target="_blank">
+COUNCIL NEWS
+</a>
+
+</div>
+
+
+<!-- TRAFFIC -->
+<div class="card traffic">
+
+<div class="title">🚗 LOCAL TRAFFIC & ROADWORKS</div>
+
+<div class="item">
+<div class="itemTitle">
+Blackpool road closures
+</div>
+<div class="itemSmall">
+Official current road closure information from Blackpool Council.
+</div>
+</div>
+
+<div class="item">
+<div class="itemTitle">
+Live Blackpool roadworks
+</div>
+<div class="itemSmall">
+Live roadworks, lane restrictions and closures around Blackpool.
+</div>
+</div>
+
+<a
+class="button"
+href="https://www.blackpool.gov.uk/Residents/Parking-roads-and-transport/Roadworks-and-road-maintenance/Road-closures.aspx"
+target="_blank">
+BLACKPOOL ROAD CLOSURES
+</a>
+
+<a
+class="button"
+href="https://www.roadworksradar.uk/roadworks/blackpool"
+target="_blank">
+LIVE ROADWORKS MAP
+</a>
+
+</div>
+
+
+<!-- AMAZON -->
+<div class="card amazon">
+
+<div class="title">🛒 AMAZON LISTS</div>
+
+<div class="amazonBox">
+
+<div class="amazonIcon">🛒</div>
+
+<div class="amazonText">
+Shopping Lists
+</div>
+
+<a
+class="button orange"
+href="https://www.amazon.co.uk/hz/wishlist/ls"
+target="_blank">
+OPEN AMAZON LISTS
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==============================
+CLOCK
+============================== */
+
+function clock(){
+
+const now=new Date();
+
+document.getElementById("time").textContent=
+now.toLocaleTimeString("en-GB",{
+hour:"2-digit",
+minute:"2-digit"
+});
+
+document.getElementById("date").textContent=
+now.toLocaleDateString("en-GB",{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+});
+
+}
+
+clock();
+setInterval(clock,1000);
+
+
+/* ==============================
+WEATHER
+============================== */
+
+const lat=53.8175;
+const lon=-3.0357;
+
+function weather(code){
+
+if(code===0)return["Clear","☀️"];
+if(code<=3)return["Partly cloudy","🌤️"];
+if(code<=48)return["Fog","🌫️"];
+if(code<=67)return["Rain","🌧️"];
+if(code<=77)return["Snow","❄️"];
+if(code<=82)return["Showers","🌦️"];
+
+return["Thunderstorm","⛈️"];
+
+}
+
+async function getWeather(){
+
+try{
+
+const url=
+"https://api.open-meteo.com/v1/forecast"+
+"?latitude="+lat+
+"&longitude="+lon+
+"&current=temperature_2m,weather_code"+
+"&hourly=temperature_2m,weather_code,precipitation_probability"+
+"&forecast_days=1"+
+"&timezone=Europe%2FLondon";
+
+const r=await fetch(url);
+const d=await r.json();
+
+const w=weather(d.current.weather_code);
+
+document.getElementById("temp").textContent=
+Math.round(d.current.temperature_2m)+"°C";
+
+document.getElementById("condition").textContent=w[0];
+
+document.getElementById("weatherIcon").textContent=w[1];
+
+const hour=new Date().getHours();
+
+let html="";
+
+for(let i=hour;i<Math.min(hour+6,24);i++){
+
+const x=weather(d.hourly.weather_code[i]);
+
+html+=`
+<div class="hour">
+${String(i).padStart(2,"0")}:00
+<div style="font-size:22px">${x[1]}</div>
+<div class="hourTemp">
+${Math.round(d.hourly.temperature_2m[i])}°
+</div>
+<div>
+${d.hourly.precipitation_probability[i]}% 💧
+</div>
+</div>
+`;
+
+}
+
+document.getElementById("hours").innerHTML=html;
+
+}catch(e){
+
+document.getElementById("condition").textContent=
+"Weather unavailable";
+
+}
+
+}
+
+getWeather();
+setInterval(getWeather,900000);
+
+
+/* ==============================
+AIRPLANES.LIVE
+BLACKPOOL RADIUS
+============================== */
+
+async function getPlanes(){
+
+const box=document.getElementById("planes");
+
+try{
+
+/*
+Blackpool centre.
+50 nautical mile radius.
+*/
+
+const url=
+"https://api.airplanes.live/v2/point/53.8175/-3.0357/50";
+
+const r=await fetch(url);
+
+if(!r.ok)throw new Error();
+
+const data=await r.json();
+
+const aircraft=(data.ac||[])
+.filter(a=>a.lat && a.lon)
+.sort((a,b)=>(a.alt_baro||0)-(b.alt_baro||0))
+.slice(0,12);
+
+document.getElementById("planeCount").textContent=
+aircraft.length+
+" aircraft currently detected within 50 nm";
+
+if(!aircraft.length){
+
+box.innerHTML=
+'<div class="plane">No aircraft detected.</div>';
+
+return;
+
+}
+
+box.innerHTML=aircraft.map(a=>{
+
+const callsign=
+(a.flight||a.r||a.hex||"UNKNOWN").trim();
+
+const altitude=
+typeof a.alt_baro==="number"
+?Math.round(a.alt_baro)+" ft"
+:"Altitude unknown";
+
+const speed=
+typeof a.gs==="number"
+?Math.round(a.gs)+" kt"
+:"";
+
+const track=
+typeof a.track==="number"
+?Math.round(a.track)+"°"
+:"";
+
+return`
+<div class="plane">
+
+<div>
+
+<div class="callsign">
+✈️ ${escapeHTML(callsign)}
+</div>
+
+<div class="info">
+${altitude}
+${speed?" • "+speed:""}
+${track?" • "+track:""}
+</div>
+
+</div>
+
+<div style="font-size:25px">
+✈
+</div>
+
+</div>
+`;
+
+}).join("");
+
+}catch(e){
+
+document.getElementById("planeCount").textContent=
+"Aircraft feed unavailable";
+
+box.innerHTML=
+'<div class="plane">Try again shortly.</div>';
+
+}
+
+}
+
+function escapeHTML(s){
+
+return String(s)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+getPlanes();
+setInterval(getPlanes,60000);
+
+</script>
+
+</body>
+</html>
