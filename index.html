@@ -6,657 +6,701 @@
 <title>Home Info</title>
 
 <style>
-*{box-sizing:border-box}
-
-html,body{
-margin:0;
-width:100%;
-height:100%;
-overflow:hidden;
-font-family:Arial,sans-serif;
-background:#0b1117;
-color:white
+* {
+  box-sizing: border-box;
 }
 
-.dashboard{
-width:100vw;
-height:100vh;
-padding:10px;
-display:grid;
-grid-template-columns:1fr 1fr 1fr;
-grid-template-rows:24% 38% 38%;
-gap:10px
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
 }
 
-.card{
-background:#17232d;
-border-radius:18px;
-padding:18px;
-overflow:hidden;
-box-shadow:0 3px 15px rgba(0,0,0,.35)
+body {
+  display: flex;
+  flex-direction: column;
 }
 
-.title{
-font-size:22px;
-font-weight:bold;
-margin-bottom:12px
+#top {
+  height: 18vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
 }
 
-/* CLOCK */
-
-.clock{
-grid-column:span 2;
-display:flex;
-align-items:center;
-justify-content:space-between
+.card {
+  background: #1d1d1d;
+  border-radius: 14px;
+  padding: 15px;
+  overflow: hidden;
 }
 
-.time{
-font-size:clamp(60px,8vw,110px);
-font-weight:bold;
-line-height:1
+#clock {
+  font-size: 6vw;
+  font-weight: bold;
+  line-height: 1;
 }
 
-.date{
-font-size:clamp(20px,2.3vw,32px);
-color:#b7c5ce;
-margin-top:10px
+#date {
+  font-size: 1.7vw;
+  margin-top: 8px;
+  color: #bbb;
 }
 
-/* WEATHER */
-
-.weather{
-display:flex;
-flex-direction:column
+#weatherTemp {
+  font-size: 4vw;
+  font-weight: bold;
 }
 
-.weatherTop{
-display:flex;
-align-items:center;
-gap:15px
+#weatherText {
+  font-size: 1.5vw;
+  color: #ccc;
 }
 
-.weatherIcon{
-font-size:65px
+.small {
+  color: #aaa;
+  font-size: 1vw;
 }
 
-.temp{
-font-size:48px;
-font-weight:bold
+#main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  padding: 0 12px 12px;
+  min-height: 0;
 }
 
-.condition{
-color:#b7c5ce
+.panel {
+  background: #1d1d1d;
+  border-radius: 14px;
+  padding: 15px;
+  overflow: hidden;
 }
 
-.hours{
-display:flex;
-gap:6px;
-margin-top:15px
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 1.7vw;
 }
 
-.hour{
-flex:1;
-background:#22323d;
-border-radius:10px;
-padding:7px 3px;
-text-align:center;
-font-size:13px
+#calendarPanel {
+  grid-row: 1 / 3;
 }
 
-.hourTemp{
-font-size:20px;
-font-weight:bold;
-margin-top:5px
+.list {
+  overflow: hidden;
 }
 
-/* CALENDAR */
-
-.calendar{
-grid-column:1
+.item {
+  padding: 9px 0;
+  border-bottom: 1px solid #333;
+  font-size: 1.05vw;
 }
 
-.calendar iframe{
-width:100%;
-height:calc(100% - 40px);
-border:0;
-border-radius:10px;
-background:white
+.item:last-child {
+  border-bottom: none;
 }
 
-/* PLANES */
-
-.planes{
-grid-column:2
+.time {
+  color: #aaa;
+  font-size: .85vw;
 }
 
-.planeCount{
-color:#8fa2ad;
-font-size:13px;
-margin-bottom:8px
+.flight {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr .8fr .7fr;
+  gap: 5px;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+  font-size: .95vw;
 }
 
-.list{
-height:calc(100% - 65px);
-overflow:hidden
+.flight strong {
+  color: #fff;
 }
 
-.plane{
-background:#22323d;
-border-radius:10px;
-padding:9px;
-margin-bottom:7px;
-display:flex;
-justify-content:space-between
+.news {
+  padding: 9px 0;
+  border-bottom: 1px solid #333;
+  font-size: 1vw;
 }
 
-.callsign{
-font-size:17px;
-font-weight:bold
+.news a {
+  color: #fff;
+  text-decoration: none;
 }
 
-.info{
-font-size:13px;
-color:#b7c5ce;
-margin-top:3px
+.news a:hover {
+  text-decoration: underline;
 }
 
-/* NEWS / TRAFFIC */
-
-.news{
-grid-column:3
+#bins {
+  font-size: 1.5vw;
 }
 
-.traffic{
-grid-column:1 / span 2
+#binDate {
+  font-size: 2.2vw;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
-.item{
-background:#22323d;
-border-radius:10px;
-padding:11px;
-margin-bottom:8px
+#binType {
+  font-size: 2vw;
+  margin-top: 5px;
 }
 
-.itemTitle{
-font-size:17px;
-font-weight:bold
+#traffic {
+  font-size: 1.1vw;
+  color: #ccc;
 }
 
-.itemSmall{
-font-size:13px;
-color:#9eb0ba;
-margin-top:4px
+.loading {
+  color: #888;
 }
 
-.button{
-display:block;
-background:#2b8cff;
-color:white;
-text-decoration:none;
-padding:13px;
-border-radius:10px;
-text-align:center;
-font-size:18px;
-font-weight:bold;
-margin-top:12px
+.error {
+  color: #e57373;
 }
 
-.button.orange{
-background:#ff9900;
-color:#111
-}
+@media (max-width: 900px) {
+  #clock {
+    font-size: 10vw;
+  }
 
-.newsButtons{
-margin-top:10px
-}
+  #date,
+  #weatherText,
+  .item,
+  .flight,
+  .news,
+  #traffic {
+    font-size: 2.5vw;
+  }
 
-/* AMAZON */
+  #main {
+    grid-template-columns: 1fr 1fr;
+  }
 
-.amazon{
-grid-column:3
-}
+  #calendarPanel {
+    grid-row: auto;
+  }
 
-.amazonBox{
-height:calc(100% - 45px);
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center
-}
-
-.amazonIcon{
-font-size:65px
-}
-
-.amazonText{
-font-size:21px;
-margin-top:8px
-}
-
-.loading{
-color:#8fa2ad
-}
-
-@media(max-width:900px){
-.dashboard{
-grid-template-columns:1fr 1fr;
-grid-template-rows:auto;
-height:auto;
-min-height:100vh;
-overflow:auto
-}
-.clock,.weather,.calendar,.planes,.news,.traffic,.amazon{
-grid-column:auto
-}
-body{overflow:auto}
+  .panel h2 {
+    font-size: 3vw;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="dashboard">
+<div id="top">
 
-<!-- CLOCK -->
-<div class="card clock">
+  <div class="card">
+    <div id="clock">--:--</div>
+    <div id="date">Loading...</div>
+  </div>
 
-<div>
-<div class="time" id="time">--:--</div>
-<div class="date" id="date">Loading...</div>
-</div>
+  <div class="card">
+    <div id="weatherTemp">--°</div>
+    <div id="weatherText">Loading weather...</div>
+    <div id="weatherNext" class="small"></div>
+  </div>
 
-<div style="font-size:55px">🏠</div>
-
-</div>
-
-
-<!-- WEATHER -->
-<div class="card weather">
-
-<div class="title">🌤️ WEATHER — BLACKPOOL</div>
-
-<div class="weatherTop">
-
-<div class="weatherIcon" id="weatherIcon">🌤️</div>
-
-<div>
-<div class="temp" id="temp">--°</div>
-<div class="condition" id="condition">Loading...</div>
-</div>
-
-</div>
-
-<div class="hours" id="hours">
-<div class="loading">Loading forecast...</div>
-</div>
+  <div class="card">
+    <div id="bins">
+      🗑️ Next bin collection
+      <div id="binDate">Loading...</div>
+      <div id="binType"></div>
+    </div>
+  </div>
 
 </div>
 
 
-<!-- CALENDAR -->
-<div class="card calendar">
+<div id="main">
 
-<div class="title">📅 TODAY</div>
+  <!-- CALENDAR -->
 
-<iframe
-src="https://calendar.google.com/calendar/embed?src=moore103calendar%40gmail.com&ctz=Europe%2FLondon&mode=AGENDA">
-</iframe>
-
-</div>
-
-
-<!-- PLANES -->
-<div class="card planes">
-
-<div class="title">✈️ PLANES OVERHEAD</div>
-
-<div class="planeCount" id="planeCount">
-Checking airspace...
-</div>
-
-<div class="list" id="planes">
-<div class="loading">Loading aircraft...</div>
-</div>
-
-</div>
+  <div class="panel" id="calendarPanel">
+    <h2>📅 Calendar</h2>
+    <div id="calendar" class="list">
+      <div class="loading">Loading calendars...</div>
+    </div>
+  </div>
 
 
-<!-- NEWS -->
-<div class="card news">
+  <!-- AIRCRAFT -->
 
-<div class="title">📰 LOCAL NEWS</div>
+  <div class="panel">
+    <h2>✈️ Aircraft nearby</h2>
 
-<div class="item">
-<div class="itemTitle">
-Blackpool latest headlines
-</div>
-<div class="itemSmall">
-Latest local stories and breaking news.
-</div>
-</div>
-
-<div class="item">
-<div class="itemTitle">
-Blackpool Council News
-</div>
-<div class="itemSmall">
-Official local council announcements.
-</div>
-</div>
-
-<a
-class="button"
-href="https://www.newsnow.co.uk/h/UK/England/Lancashire/Blackpool"
-target="_blank">
-LATEST BLACKPOOL NEWS
-</a>
-
-<a
-class="button"
-href="https://www.blackpool.gov.uk/News/Newsroom.aspx"
-target="_blank">
-COUNCIL NEWS
-</a>
-
-</div>
+    <div id="aircraft">
+      <div class="loading">Loading aircraft...</div>
+    </div>
+  </div>
 
 
-<!-- TRAFFIC -->
-<div class="card traffic">
+  <!-- NEWS -->
 
-<div class="title">🚗 LOCAL TRAFFIC & ROADWORKS</div>
+  <div class="panel">
+    <h2>📰 Local news</h2>
 
-<div class="item">
-<div class="itemTitle">
-Blackpool road closures
-</div>
-<div class="itemSmall">
-Official current road closure information from Blackpool Council.
-</div>
-</div>
-
-<div class="item">
-<div class="itemTitle">
-Live Blackpool roadworks
-</div>
-<div class="itemSmall">
-Live roadworks, lane restrictions and closures around Blackpool.
-</div>
-</div>
-
-<a
-class="button"
-href="https://www.blackpool.gov.uk/Residents/Parking-roads-and-transport/Roadworks-and-road-maintenance/Road-closures.aspx"
-target="_blank">
-BLACKPOOL ROAD CLOSURES
-</a>
-
-<a
-class="button"
-href="https://www.roadworksradar.uk/roadworks/blackpool"
-target="_blank">
-LIVE ROADWORKS MAP
-</a>
-
-</div>
+    <div id="news">
+      <div class="loading">Loading news...</div>
+    </div>
+  </div>
 
 
-<!-- AMAZON -->
-<div class="card amazon">
+  <!-- WEATHER -->
 
-<div class="title">🛒 AMAZON LISTS</div>
+  <div class="panel">
+    <h2>🌤️ Next few hours</h2>
 
-<div class="amazonBox">
+    <div id="hourlyWeather">
+      <div class="loading">Loading...</div>
+    </div>
+  </div>
 
-<div class="amazonIcon">🛒</div>
 
-<div class="amazonText">
-Shopping Lists
-</div>
+  <!-- TRAFFIC -->
 
-<a
-class="button orange"
-href="https://www.amazon.co.uk/hz/wishlist/ls"
-target="_blank">
-OPEN AMAZON LISTS
-</a>
+  <div class="panel">
+    <h2>🚗 Local traffic</h2>
 
-</div>
-
-</div>
+    <div id="traffic">
+      Checking traffic information...
+    </div>
+  </div>
 
 </div>
 
 
 <script>
 
-/* ==============================
-CLOCK
-============================== */
+const API =
+  "https://home-info-api.chris5moore.workers.dev";
 
-function clock(){
 
-const now=new Date();
+/* =========================
+   CLOCK
+   ========================= */
 
-document.getElementById("time").textContent=
-now.toLocaleTimeString("en-GB",{
-hour:"2-digit",
-minute:"2-digit"
-});
+function updateClock() {
 
-document.getElementById("date").textContent=
-now.toLocaleDateString("en-GB",{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-});
+  const now = new Date();
 
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+
+  document.getElementById("date").textContent =
+    now.toLocaleDateString("en-GB", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
 }
 
-clock();
-setInterval(clock,1000);
+updateClock();
+setInterval(updateClock, 1000);
 
 
-/* ==============================
-WEATHER
-============================== */
+/* =========================
+   WEATHER
+   ========================= */
 
-const lat=53.8175;
-const lon=-3.0357;
+async function loadWeather() {
 
-function weather(code){
+  try {
 
-if(code===0)return["Clear","☀️"];
-if(code<=3)return["Partly cloudy","🌤️"];
-if(code<=48)return["Fog","🌫️"];
-if(code<=67)return["Rain","🌧️"];
-if(code<=77)return["Snow","❄️"];
-if(code<=82)return["Showers","🌦️"];
+    const response =
+      await fetch(API + "/weather");
 
-return["Thunderstorm","⛈️"];
+    const data =
+      await response.json();
 
+    const current =
+      data.current;
+
+    document.getElementById("weatherTemp").textContent =
+      Math.round(current.temperature_2m) + "°C";
+
+    document.getElementById("weatherText").textContent =
+      "Feels like " +
+      Math.round(current.apparent_temperature) +
+      "°C • Wind " +
+      Math.round(current.wind_speed_10m) +
+      " km/h";
+
+    const times =
+      data.hourly.time || [];
+
+    const temps =
+      data.hourly.temperature || [];
+
+    const rain =
+      data.hourly.rainChance || [];
+
+    let html = "";
+
+    for (
+      let i = 0;
+      i < Math.min(5, times.length);
+      i++
+    ) {
+
+      const time =
+        new Date(times[i])
+          .toLocaleTimeString(
+            "en-GB",
+            {
+              hour: "2-digit",
+              minute: "2-digit"
+            }
+          );
+
+      html += `
+        <div class="item">
+          <strong>${time}</strong>
+          &nbsp; ${Math.round(temps[i])}°C
+          &nbsp; ${rain[i] ?? 0}% rain
+        </div>
+      `;
+    }
+
+    document.getElementById("hourlyWeather")
+      .innerHTML = html;
+
+    document.getElementById("weatherNext")
+      .textContent = "Next few hours";
+
+  } catch {
+
+    document.getElementById("weatherText")
+      .textContent =
+      "Weather unavailable";
+
+    document.getElementById("hourlyWeather")
+      .innerHTML =
+      '<div class="error">Weather unavailable</div>';
+  }
 }
 
-async function getWeather(){
+loadWeather();
 
-try{
+setInterval(loadWeather, 10 * 60 * 1000);
 
-const url=
-"https://api.open-meteo.com/v1/forecast"+
-"?latitude="+lat+
-"&longitude="+lon+
-"&current=temperature_2m,weather_code"+
-"&hourly=temperature_2m,weather_code,precipitation_probability"+
-"&forecast_days=1"+
-"&timezone=Europe%2FLondon";
 
-const r=await fetch(url);
-const d=await r.json();
+/* =========================
+   AIRCRAFT
+   ========================= */
 
-const w=weather(d.current.weather_code);
+async function loadAircraft() {
 
-document.getElementById("temp").textContent=
-Math.round(d.current.temperature_2m)+"°C";
+  try {
 
-document.getElementById("condition").textContent=w[0];
+    const response =
+      await fetch(API + "/planes");
 
-document.getElementById("weatherIcon").textContent=w[1];
+    const data =
+      await response.json();
 
-const hour=new Date().getHours();
+    if (
+      !data.aircraft ||
+      !data.aircraft.length
+    ) {
 
-let html="";
+      document.getElementById("aircraft")
+        .innerHTML =
+        '<div class="loading">No aircraft detected.</div>';
 
-for(let i=hour;i<Math.min(hour+6,24);i++){
+      return;
+    }
 
-const x=weather(d.hourly.weather_code[i]);
+    let html = "";
 
-html+=`
-<div class="hour">
-${String(i).padStart(2,"0")}:00
-<div style="font-size:22px">${x[1]}</div>
-<div class="hourTemp">
-${Math.round(d.hourly.temperature_2m[i])}°
-</div>
-<div>
-${d.hourly.precipitation_probability[i]}% 💧
-</div>
-</div>
-`;
+    for (
+      const plane of data.aircraft.slice(0, 12)
+    ) {
 
+      const altitude =
+        typeof plane.altitude === "number"
+          ? plane.altitude.toLocaleString() + " ft"
+          : plane.altitude;
+
+      const distance =
+        plane.distance != null
+          ? plane.distance + " nm"
+          : "";
+
+      html += `
+        <div class="flight">
+
+          <strong>
+            ${plane.flight || plane.registration || "Unknown"}
+          </strong>
+
+          <span>
+            ${plane.aircraft || plane.type}
+          </span>
+
+          <span>
+            ${altitude}
+          </span>
+
+          <span>
+            ${distance}
+          </span>
+
+        </div>
+      `;
+    }
+
+    document.getElementById("aircraft")
+      .innerHTML = html;
+
+  } catch {
+
+    document.getElementById("aircraft")
+      .innerHTML =
+      '<div class="error">Aircraft unavailable</div>';
+  }
 }
 
-document.getElementById("hours").innerHTML=html;
+loadAircraft();
 
-}catch(e){
+setInterval(loadAircraft, 30 * 1000);
 
-document.getElementById("condition").textContent=
-"Weather unavailable";
 
+/* =========================
+   CALENDAR
+   ========================= */
+
+async function loadCalendar() {
+
+  try {
+
+    const response =
+      await fetch(API + "/calendar");
+
+    const data =
+      await response.json();
+
+    if (
+      !data.events ||
+      !data.events.length
+    ) {
+
+      document.getElementById("calendar")
+        .innerHTML =
+        '<div class="loading">No upcoming events.</div>';
+
+      return;
+    }
+
+    let html = "";
+
+    for (
+      const event of data.events.slice(0, 20)
+    ) {
+
+      let start = event.start || "";
+
+      if (
+        /^\d{8}T\d{6}/.test(start)
+      ) {
+
+        const year =
+          start.substring(0, 4);
+
+        const month =
+          start.substring(4, 6);
+
+        const day =
+          start.substring(6, 8);
+
+        const hour =
+          start.substring(9, 11);
+
+        const minute =
+          start.substring(11, 13);
+
+        start =
+          `${day}/${month}/${year} ${hour}:${minute}`;
+      }
+
+      html += `
+        <div class="item">
+          <strong>${event.summary}</strong>
+          <div class="time">${start}</div>
+        </div>
+      `;
+    }
+
+    document.getElementById("calendar")
+      .innerHTML = html;
+
+  } catch {
+
+    document.getElementById("calendar")
+      .innerHTML =
+      '<div class="error">Calendar unavailable</div>';
+  }
 }
 
+loadCalendar();
+
+setInterval(loadCalendar, 5 * 60 * 1000);
+
+
+/* =========================
+   NEWS
+   ========================= */
+
+async function loadNews() {
+
+  try {
+
+    const response =
+      await fetch(API + "/news");
+
+    const data =
+      await response.json();
+
+    if (
+      !data.items ||
+      !data.items.length
+    ) {
+
+      document.getElementById("news")
+        .innerHTML =
+        '<div class="loading">No news available.</div>';
+
+      return;
+    }
+
+    let html = "";
+
+    for (
+      const item of data.items.slice(0, 7)
+    ) {
+
+      html += `
+        <div class="news">
+          <a
+            href="${item.link}"
+            target="_blank"
+          >
+            ${item.title}
+          </a>
+        </div>
+      `;
+    }
+
+    document.getElementById("news")
+      .innerHTML = html;
+
+  } catch {
+
+    document.getElementById("news")
+      .innerHTML =
+      '<div class="error">News unavailable</div>';
+  }
 }
 
-getWeather();
-setInterval(getWeather,900000);
+loadNews();
+
+setInterval(loadNews, 10 * 60 * 1000);
 
 
-/* ==============================
-AIRPLANES.LIVE
-BLACKPOOL RADIUS
-============================== */
+/* =========================
+   BINS
+   ========================= */
 
-async function getPlanes(){
+async function loadBins() {
 
-const box=document.getElementById("planes");
+  try {
 
-try{
+    const response =
+      await fetch(API + "/bins");
 
-/*
-Blackpool centre.
-50 nautical mile radius.
-*/
+    const data =
+      await response.json();
 
-const url=
-"https://api.airplanes.live/v2/point/53.8175/-3.0357/50";
+    if (!data.next) {
 
-const r=await fetch(url);
+      document.getElementById("binDate")
+        .textContent = "No collection found";
 
-if(!r.ok)throw new Error();
+      return;
+    }
 
-const data=await r.json();
+    const date =
+      new Date(data.next.date + "T12:00:00");
 
-const aircraft=(data.ac||[])
-.filter(a=>a.lat && a.lon)
-.sort((a,b)=>(a.alt_baro||0)-(b.alt_baro||0))
-.slice(0,12);
+    document.getElementById("binDate")
+      .textContent =
+      date.toLocaleDateString(
+        "en-GB",
+        {
+          weekday: "long",
+          day: "numeric",
+          month: "long"
+        }
+      );
 
-document.getElementById("planeCount").textContent=
-aircraft.length+
-" aircraft currently detected within 50 nm";
+    document.getElementById("binType")
+      .textContent =
+      data.next.icon +
+      " " +
+      data.next.bin +
+      " bin";
 
-if(!aircraft.length){
+  } catch {
 
-box.innerHTML=
-'<div class="plane">No aircraft detected.</div>';
-
-return;
-
+    document.getElementById("binDate")
+      .textContent =
+      "Unavailable";
+  }
 }
 
-box.innerHTML=aircraft.map(a=>{
+loadBins();
 
-const callsign=
-(a.flight||a.r||a.hex||"UNKNOWN").trim();
 
-const altitude=
-typeof a.alt_baro==="number"
-?Math.round(a.alt_baro)+" ft"
-:"Altitude unknown";
+/* =========================
+   TRAFFIC
+   ========================= */
 
-const speed=
-typeof a.gs==="number"
-?Math.round(a.gs)+" kt"
-:"";
+function showTraffic() {
 
-const track=
-typeof a.track==="number"
-?Math.round(a.track)+"°"
-:"";
+  document.getElementById("traffic")
+    .innerHTML = `
+      <div class="item">
+        <strong>Blackpool / Fylde</strong>
+      </div>
 
-return`
-<div class="plane">
+      <div class="item">
+        Live traffic feed will be added here.
+      </div>
 
-<div>
-
-<div class="callsign">
-✈️ ${escapeHTML(callsign)}
-</div>
-
-<div class="info">
-${altitude}
-${speed?" • "+speed:""}
-${track?" • "+track:""}
-</div>
-
-</div>
-
-<div style="font-size:25px">
-✈
-</div>
-
-</div>
-`;
-
-}).join("");
-
-}catch(e){
-
-document.getElementById("planeCount").textContent=
-"Aircraft feed unavailable";
-
-box.innerHTML=
-'<div class="plane">Try again shortly.</div>';
-
+      <div class="small">
+        Traffic data requires a suitable live
+        traffic provider.
+      </div>
+    `;
 }
 
-}
-
-function escapeHTML(s){
-
-return String(s)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-getPlanes();
-setInterval(getPlanes,60000);
+showTraffic();
 
 </script>
 
